@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, File, UploadFile
 from app.api.schemas import *
 from app.core.risk_engine import calculate_score
 from app.core.llm_service import generate_summary
@@ -33,7 +33,8 @@ def update_profile(user_id: str, update: UpdateProfileRequest):
     return updated
 
 @router.post("/analyze", response_model=AnalyzeResponse)
-def analyze_product(data: AnalyzeRequest):
+def analyze_product(data: AnalyzeRequest, image: Optional[UploadFile] = File(None)):
+    """Analyze product ingredients and generate a summary."""
     allergies = data.user_allergies
     scores = []
     for ingredient in data.ingredients:
@@ -44,5 +45,5 @@ def analyze_product(data: AnalyzeRequest):
             matched_allergen=matched
         ))
 
-    summary = generate_summary(data.ingredients, scores, allergies)
+    summary = generate_summary(data.ingredients, scores, allergies, image)
     return AnalyzeResponse(risk_scores=scores, summary=summary)
