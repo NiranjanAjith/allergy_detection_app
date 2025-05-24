@@ -113,32 +113,6 @@ This is a proof-of-concept (PoC) FastAPI backend for the **Allergy Detection App
 
 ---
 
-### 5. `POST /admin/ingredients/tag`
-
-**Description:** (Admin only) Submit an ingredient's risk factor components for tagging in the risk matrix.
-
-**Request Body:**
-
-```json
-{
-  "ingredient": "peanut oil",
-  "base_match": 1.0,
-  "severity_weight": 0.9,
-  "dosage_factor": 0.4,
-  "processing_adjustment": 0.5
-}
-```
-
-**Response:**
-
-```json
-{
-  "message": "Ingredient tagged successfully"
-}
-```
-
----
-
 ## ⚙️ Risk Score Formula
 
 ```
