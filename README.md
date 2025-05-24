@@ -38,7 +38,7 @@ This is a proof-of-concept (PoC) FastAPI backend for the **Allergy Detection App
 
 ---
 
-### 2. `POST /scan`
+### 2. `POST /analyze`
 
 **Description:** Analyze a list of scanned ingredients against the user’s allergy profile and generate a human-readable summary using LLM.
 
